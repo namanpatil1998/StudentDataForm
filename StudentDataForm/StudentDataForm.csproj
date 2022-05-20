@@ -125,6 +125,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="ErrorPage.aspx" />
+    <Content Include="LoginorSignUP.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginorSignUP.aspx.cs">
+      <DependentUpon>LoginorSignUP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginorSignUP.aspx.designer.cs">
+      <DependentUpon>LoginorSignUP.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

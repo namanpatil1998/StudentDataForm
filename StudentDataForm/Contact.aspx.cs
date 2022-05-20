@@ -11,7 +11,17 @@ namespace StudentDataForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Session["User"] as string))
+            {
+                if (!IsPostBack)
+                {
 
+                }
+            }
+            else
+            {
+                Response.Redirect("~/LoginorSignUP.aspx");
+            }
         }
     }
 }

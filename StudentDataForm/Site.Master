@@ -55,6 +55,7 @@
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
                 </div>
+                <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" />
             </div>
         </div>
         <div class="container body-content">

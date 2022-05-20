@@ -13,5 +13,10 @@ namespace StudentDataForm
         {
 
         }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            this.Session["User"] = "";
+        }
     }
 }
