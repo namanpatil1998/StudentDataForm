@@ -14,7 +14,8 @@ namespace StudentDataForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Session["User"] as string))
+            //if (!string.IsNullOrEmpty(Session["User"] as string))
+            if (!string.IsNullOrEmpty(Request.Cookies["Username"].Value))
             {
                 if (!IsPostBack)
                 {
@@ -124,5 +125,56 @@ namespace StudentDataForm
             da.Fill(DS);
             return DS;
         }
+
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string gender = string.Empty;
+                if (Male.Checked) { gender = "male"; } else if (Female.Checked) { gender = "female"; } else { gender = "unknown"; }
+                string education = Pg.Checked ? "PG-Diploma," : "";
+                education += be.Checked ? "Bachelor of Enginnering," : "";
+                education += diploma.Checked ? "Diploma in engineering" : "";
+                long mobilenumber = Convert.ToInt64(MobileNo.Text);
+
+                using (SqlConnection con = new SqlConnection("Data Source=LAPTOP-OB21UUJ4;Initial Catalog=StudentForm;Integrated Security=True"))
+                {
+                    SqlCommand com = new SqlCommand("xp_Studentdetails", con);
+                    com.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlParameter p1 = new SqlParameter("Country", CountryList.SelectedValue);
+                    SqlParameter p2 = new SqlParameter("State", StateList.SelectedValue);
+                    SqlParameter p3 = new SqlParameter("City", CityList.SelectedValue);
+                    SqlParameter p4 = new SqlParameter("Gender", gender);
+                    SqlParameter p5 = new SqlParameter("Education", education);
+                    SqlParameter p6 = new SqlParameter("Fullname", Fullname.Text);
+                    SqlParameter p7 = new SqlParameter("Address", Address.Text);
+                    SqlParameter p8 = new SqlParameter("Mobileno", mobilenumber);
+                    com.Parameters.Add(p1);
+                    com.Parameters.Add(p2);
+                    com.Parameters.Add(p3);
+                    com.Parameters.Add(p4);
+                    com.Parameters.Add(p5);
+                    com.Parameters.Add(p6);
+                    com.Parameters.Add(p7);
+                    com.Parameters.Add(p8);
+                    con.Open();
+                    DataTable dt = new DataTable();
+                    dt.Load(com.ExecuteReader());
+                    con.Close();
+                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Data Saved Successfully!')", true);
+                Response.Redirect("~/About.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                string strRedirect;
+                strRedirect = Request["~/ErrorPage.aspx"];
+                if (strRedirect == null)
+                    strRedirect = $"~/ErrorPage.aspx?Message={ex.Message}";
+                Server.Transfer(strRedirect);
+            }
+        }
+
+
     }
 }

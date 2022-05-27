@@ -125,6 +125,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="ErrorPage.aspx" />
+    <Content Include="Images\pexels-pixabay-207691.jpg" />
+    <Content Include="Images\pexels-pixabay-256455.jpg" />
+    <Content Include="Images\pexels-pixabay-261651.jpg" />
     <Content Include="LoginorSignUP.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

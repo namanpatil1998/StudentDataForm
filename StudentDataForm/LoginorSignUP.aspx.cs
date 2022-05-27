@@ -72,15 +72,17 @@ namespace StudentDataForm
                         ck.Expires = tkt.Expiration;
                     ck.Path = FormsAuthentication.FormsCookiePath;
                     Response.Cookies.Add(ck);
+                    Response.Cookies["userName"].Value = L_username.Text;
 
                     string strRedirect;
                     strRedirect = Request["~/About.aspx"];
                     string message = "Logged in Successfully!!!";
                     this.Session["User"] = username.Text;
-                    this.Session["LogInData"] = $"Hey {username.Text}, You {message}";
+                    string usernameText = username.Text;
+                    this.Session["LogInData"] = $"Hey {usernameText}, You {message}";
                     if (strRedirect == null)
                         strRedirect = $"~/About.aspx";
-                    Response.Redirect(strRedirect);
+                    Response.Redirect(strRedirect,false);
                 }
                 else
                 {

@@ -16,7 +16,8 @@ namespace StudentDataForm
 
         protected void Logout_Click(object sender, EventArgs e)
         {
-            this.Session["User"] = "";
+            Response.Cookies["userName"].Value = "";
+            Response.Redirect("~/LoginorSignUP.aspx");
         }
     }
 }

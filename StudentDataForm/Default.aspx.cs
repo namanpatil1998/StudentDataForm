@@ -14,7 +14,8 @@ namespace StudentDataForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Session["User"] as string))
+            //if (!string.IsNullOrEmpty(Session["User"] as string))
+            if(!string.IsNullOrEmpty(Request.Cookies["Username"].Value))
             {
                 if (!IsPostBack)
                 {
